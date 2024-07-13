@@ -3,16 +3,22 @@ package main
 import "fmt"
 
 func main() {
-	defer fmt.Println("done")
-	sum := 0
-	for i := 1; i < 10; i++ {
-		sum += 1
-	}
-	fmt.Println(sum)
+	var age int = 17
+	var height float64 = 175
+	var isStudent bool = true
+	var name string = "anish"
+	fmt.Println(age, height, isStudent, name)
 
-	newsum := 1
-	for ; newsum < 1000; {
-		newsum += newsum
+	if age < 18 {
+		fmt.Println("Underage")
+	} else {
+		fmt.Println("Adult")
 	}
-	fmt.Println(newsum)
+
+	switch name {
+	case "anish":
+		fmt.Println("Hello Anish!")
+	default:
+		fmt.Println("Hello guest!")
+	}
 }
