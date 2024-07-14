@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -72,6 +73,21 @@ func main() {
 		fmt.Print(i)
 		i++
 	}
+
+	var n int = 1000000
+	var testslice = []int{}
+	var testslice2 = make([]int, 0, n)
+
+	fmt.Printf("\nTotal time without preallocation: %v\n", timeLoop(testslice, n))
+	fmt.Printf("Total with with preallocation: %v\n", timeLoop(testslice2, n))
+}
+
+func timeLoop(slice []int, n int) time.Duration {
+	var t0 = time.Now()
+	for len(slice) < n {
+		slice = append(slice, 1)
+	}
+	return time.Since(t0)
 }
 
 func intDivision(numerator int, denominator int) (int, int, error) {
