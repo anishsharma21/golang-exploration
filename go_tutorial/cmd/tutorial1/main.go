@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -80,6 +81,23 @@ func main() {
 
 	fmt.Printf("\nTotal time without preallocation: %v\n", timeLoop(testslice, n))
 	fmt.Printf("Total with with preallocation: %v\n", timeLoop(testslice2, n))
+
+	var mystring = []rune("résumé")
+	fmt.Println(len(mystring))
+	for i, v := range mystring {
+		fmt.Println(i, v)
+	}
+
+	var myrune = 'a'
+	fmt.Printf("\nmyrun = %v, %T", myrune, myrune)
+
+	var strslice = []string{"h", "i", " ", "t", "h", "ere"}
+	var strbuilder strings.Builder
+	for i := range strslice {
+		strbuilder.WriteString(strslice[i])
+	}
+	var catstr = strbuilder.String()
+	fmt.Println("\n" + catstr)
 }
 
 func timeLoop(slice []int, n int) time.Duration {
