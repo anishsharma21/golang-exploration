@@ -7,7 +7,42 @@ import (
 	"time"
 )
 
+type engine interface {
+	kmsLeft() uint8
+}
+
+type electricEngine struct {
+	mpkwh uint8
+	kwh uint8
+}
+
+type gasEngine struct {
+	mpl uint8
+	litres uint8
+}
+
+func (e gasEngine) kmsLeft() uint8 {
+	return e.litres * e.mpl
+}
+
+func (e electricEngine) kmsLeft() uint8 {
+	return e.kwh * e.mpkwh
+}
+
+func canMakeIt(e engine, kms uint8) {
+	if kms <= e.kmsLeft() {
+		fmt.Println("You can make it there!")
+	} else {
+		fmt.Println("You can't make it there...")
+	}
+}
+
 func main() {
+	var myengine gasEngine = gasEngine{mpl: 45, litres: 3}
+	var myeengine electricEngine = electricEngine{mpkwh: 44, kwh: 23}
+	canMakeIt(myengine, 30)
+	canMakeIt(myeengine, 209)
+
 	var numerator int = 5
 	var denominator int = 4
 	var result, remainder, err = intDivision(numerator, denominator)
