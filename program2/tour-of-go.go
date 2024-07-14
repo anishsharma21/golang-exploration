@@ -7,6 +7,36 @@ type Person struct {
 	Age int
 }
 
+type Book struct {
+	title string
+	author string
+	pages int
+}
+
+func bookDetails(book Book) {
+	fmt.Printf("Book name: %s\nAuthor: %s\nPages: %v", book.title, book.author, book.pages)
+	fmt.Println()
+}
+
+type Student struct {
+	name string
+	age int
+	grades []int
+}
+
+func (student Student) AverageGrade() float64 {
+	var sum int = 0
+	for _, grade := range student.grades {
+		sum += grade
+	}
+	average := float64(sum) / float64(len(student.grades))
+	return average
+} 
+
+func (student Student) isPassing() bool {
+	return student.AverageGrade() > 60
+}
+
 func greet(name string) string {
 	return fmt.Sprintf("Hello %s", name)
 }
@@ -45,4 +75,14 @@ func main() {
 
 	fmt.Println(greet(name))
 	fmt.Println(calculateBMI(height, 67))
+
+	book := Book{title: "harry potter", author: "JK", pages: 300}
+
+	bookDetails(book)
+
+	student := Student{name: "anish", age: 27, grades: []int{45, 65, 78, 89, 23}}
+	averageGrade := student.AverageGrade()
+	isPassing := student.isPassing()
+	fmt.Printf("%v, %v", averageGrade, isPassing)
+	fmt.Println()
 }
