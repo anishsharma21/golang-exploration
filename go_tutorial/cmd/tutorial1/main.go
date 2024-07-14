@@ -42,6 +42,36 @@ func main() {
 
 	var intslice3 []int32 = make([]int32, 3, 8)
 	fmt.Println(intslice3, len(intslice3), cap(intslice3))
+
+	var myMap map[string]uint8 = make(map[string]uint8)
+	fmt.Println(myMap)
+
+	var myMap2 = map[string]uint8{"Adam":34, "Sarah":32}
+	fmt.Println(myMap2)
+	fmt.Println(myMap2["Adam"])
+	var age, ok = myMap2["John"]
+	if ok {
+		fmt.Printf("The age is %v", age)
+	} else {
+		fmt.Println("Name doesn't exist in the map")
+	}
+	fmt.Println()
+	for name, age := range myMap2 {
+		fmt.Printf("Name: %s\nAge: %v\n", name, age)
+	}
+	fmt.Println()
+	for i, v := range intarr2 {
+		fmt.Printf("Value is %v at index %v\n", v, i)
+	}
+
+	var i int = 0
+	for {
+		if i >= 10 {
+			break
+		}
+		fmt.Print(i)
+		i++
+	}
 }
 
 func intDivision(numerator int, denominator int) (int, int, error) {
