@@ -133,6 +133,37 @@ func main() {
 	}
 	var catstr = strbuilder.String()
 	fmt.Println("\n" + catstr)
+
+	var p *int32 = new(int32)
+	var j int32
+	fmt.Printf("The value that p point to is %v", *p)
+	fmt.Printf("\nThe value of i is %v\n", j)
+	*p = 10
+	fmt.Printf("The new value of p is %v\n", *p)
+	p = &j
+	*p = 1
+	fmt.Printf("The value that p point to is %v", *p)
+	fmt.Printf("\nThe value of i is %v\n", j)
+
+	var newslice = []int32{1, 2, 3}
+	var newslicecopy = newslice
+	newslicecopy[2] = 4
+	fmt.Println(newslice)
+	fmt.Println(newslicecopy)
+
+	var thing1 [5]float64 = [5]float64{1, 2, 3, 4, 5}
+	fmt.Printf("\nThe memory location of thing1 is: %p", &thing1)
+	var thingresult [5]float64 = square(&thing1)
+	fmt.Printf("\nThe result is: %v", thingresult)
+	fmt.Printf("\nThe value of thing1 is: %v", thing1)
+}
+
+func square(thing2 *[5]float64) [5]float64 {
+	fmt.Printf("\nThe memory location of thing2 is: %p", &thing2)
+	for i := range thing2 {
+		thing2[i] = thing2[i] * thing2[i]
+	}
+	return *thing2
 }
 
 func timeLoop(slice []int, n int) time.Duration {
